@@ -11,6 +11,7 @@ interface Istaking{
 }
 interface IAuction{
     function startBidPeriod(uint _tokenId, uint startPrice) external;
+    function revokeNFTBid(uint _tokenId) external ;
 }
 
 /**
@@ -18,9 +19,12 @@ interface IAuction{
  */
 contract TwentyFourNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
-    address dev;
-    address stakingAddress;
-    address auctionAddress;
+    address public gov;
+    address public stakingAddress;
+    address public auctionAddress;
+    mapping (uint => address) public artist;
+    uint[] public burntNFTs;
+    //mapping (uint256 => string) private rawHash; //for rawfileHash only for the owner
 
      Counters.Counter private _counter;
     
@@ -29,14 +33,17 @@ contract TwentyFourNFT is ERC721URIStorage {
     ) 
         ERC721('24nft.store', '24NFT') 
     {
-        dev = _dev;
-
+        gov = _dev;
     }
 
-    function setStakingAddress(address _staking) public onlyDev(){
+    function getArtist(uint _tokenId) external view returns(address){
+        return artist[_tokenId];
+    }
+
+    function setStakingAddress(address _staking) public onlyGov(){
         stakingAddress = _staking;
     }
-    function setAuctionAddress(address _auction) public onlyDev(){
+    function setAuctionAddress(address _auction) public onlyGov(){
         auctionAddress = _auction;
     }
 
@@ -44,27 +51,52 @@ contract TwentyFourNFT is ERC721URIStorage {
      * @dev mint a NFT
      * @dev tokenURI - URL include ipfs hash
      */
-    function mint(address to, string memory tokenURI, uint startPrice) public returns (bool) {
+    function mint(
+        string memory tokenURI,
+         uint startPrice 
+         //string memory rawUri
+         ) public returns (bool) {
         /// Mint a new NFT
         _counter.increment();
         uint256 _id = _counter.current();
-        
-        _mint(to, _id);
+        artist[_id] = msg.sender;
+        _mint(auctionAddress, _id);
         _setTokenURI(_id, tokenURI);
+        //rawHash[_id] = rawUri;
         Istaking(stakingAddress).startStakePeriod(_id);
         IAuction(auctionAddress).startBidPeriod(_id, startPrice);
         return true;
     }
-    function revokeNFT(uint _tokenId) public{
+    function revokeNFT(uint _tokenId) external onlyArtist(_tokenId){
         uint totalStakes;
-        (totalStakes,) = Istaking(stakingAddress).getStakeDetails(_tokenId);
+        uint endTime;
+        (totalStakes,endTime) = Istaking(stakingAddress).getStakeDetails(_tokenId);
         require(totalStakes>0,'Cannot revoke after someone has staked');
+        require(endTime<block.timestamp,'Cannot revoke after auction has started');
         _burn(_tokenId);
         Istaking(stakingAddress).revokeNFTstake(_tokenId);
+        IAuction(stakingAddress).revokeNFTBid(_tokenId);
+        burntNFTs.push(_tokenId);
     }
 
-    modifier onlyDev (){
-        require(msg.sender == dev,"You don't have the permission to do that");
+    function eraseNFT(uint _tokenId) external onlyAuction() {
+        _burn(_tokenId);
+    }
+
+    function clearStoredBurntAddresses() external onlyGov(){
+        delete burntNFTs;
+    }
+
+    modifier onlyGov (){
+        require(msg.sender == gov,"You don't have the permission to do that");
+        _;
+    }
+    modifier onlyArtist (uint _id){
+        require(msg.sender == artist[_id],"You don't have the permission to do that");
+        _;
+    }
+    modifier onlyAuction (){
+        require(msg.sender == auctionAddress,"You don't have the permission to do that");
         _;
     }
 }
