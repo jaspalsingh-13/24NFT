@@ -73,5 +73,7 @@ export const styles = (theme: Theme) =>
       minheight: 100,
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary,
+      alignItems: 'center',
+      justifyContent: 'space-between'
     },
   });

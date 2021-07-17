@@ -15,6 +15,6 @@ export const styles = ({ palette }: Theme) =>
       height: 60,
     },
     activeLinkButton: {
-      backgroundColor: "rgba(255,255,255,50)",
+      border: `2px solid ${palette.secondary.main}`,
     },
   });

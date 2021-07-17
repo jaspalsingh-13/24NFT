@@ -1,5 +1,13 @@
 import React, { Component, ReactNode } from "react";
-import { AppBar, LinearProgress, Toolbar, withStyles } from "@material-ui/core";
+import {
+  AppBar,
+  Container,
+  IconButton,
+  LinearProgress,
+  Toolbar,
+  Typography,
+  withStyles,
+} from "@material-ui/core";
 import { styles } from "./PageLayout.styles";
 import { inject, observer } from "mobx-react";
 
@@ -7,6 +15,7 @@ import { IClasses } from "../../interfaces";
 import { UIStore } from "../../stores";
 import SearchHeader from "../SearchHeader/SearchHeader";
 import HeaderOptionComponent from "../HeaderOptionComponent/HeaderOptionComponent";
+import { Facebook } from "@material-ui/icons";
 
 interface Props {
   classes?: IClasses;
@@ -101,8 +110,33 @@ class PageLayout extends Component<Props, States> {
           {this.pageLoader}
           <div className={classes.content}>{this.props.children}</div>
         </div>
-
-        <div className={classes.footer}>Footer: To work on</div>
+        <AppBar position="static" color="primary">
+          <Toolbar className={classes.footer}>
+            <Typography variant="body1" color="inherit">
+              Privacy Policy
+            </Typography>
+            <Typography variant="body1" color="inherit">
+              Copyright © 2021 24NFT | Powered by Relinns Technology Pvt. Ltd
+            </Typography>
+            <div>
+              <IconButton onClick={() => null}>
+                <Facebook />
+              </IconButton>
+              <IconButton onClick={() => null}>
+                <Facebook />
+              </IconButton>
+              <IconButton onClick={() => null}>
+                <Facebook />
+              </IconButton>
+              <IconButton onClick={() => null}>
+                <Facebook />
+              </IconButton>
+              <IconButton onClick={() => null}>
+                <Facebook />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }

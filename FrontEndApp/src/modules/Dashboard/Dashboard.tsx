@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Typography, withStyles } from "@material-ui/core";
 import { styles } from "./Dashboard.styles";
-import { IClasses } from "../../interfaces";
+import { IClasses } from "../shared/interfaces";
 import { RouteComponentProps } from "react-router";
 
 import { observer } from "mobx-react";

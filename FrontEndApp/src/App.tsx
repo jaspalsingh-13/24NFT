@@ -8,13 +8,11 @@ import {
 import { createTheme, ThemeProvider, withTheme } from "@material-ui/core";
 import { observer } from "mobx-react";
 
-import { IClasses } from "./interfaces";
-import { Dashboard } from "./pages";
+import { Dashboard, IClasses, PageLayout } from "./modules";
 
 import ProtectedRoute from "./ProtectedRoute";
 
 import Theme from "./Theme";
-import { PageLayout } from "./sharedComponent";
 
 type Props = {
   classes?: IClasses;

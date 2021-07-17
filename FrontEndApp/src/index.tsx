@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { RootStore } from "./stores";
+import { RootStore } from "./modules/shared/stores";
 import { Provider } from "mobx-react";
 import reportWebVitals from "./reportWebVitals";
 
