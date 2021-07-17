@@ -1,7 +1,6 @@
 import React, { Component, ReactNode } from "react";
 import {
   AppBar,
-  Container,
   IconButton,
   LinearProgress,
   Toolbar,
@@ -16,6 +15,7 @@ import { UIStore } from "../../stores";
 import SearchHeader from "../SearchHeader/SearchHeader";
 import HeaderOptionComponent from "../HeaderOptionComponent/HeaderOptionComponent";
 import { Facebook } from "@material-ui/icons";
+import { AppLogo } from "../../../../assets";
 
 interface Props {
   classes?: IClasses;
@@ -30,18 +30,18 @@ interface States {
 const options = [
   {
     label: "Market Place",
+    navigator: "/dashboard",
+  },
+  {
+    label: "How It Works",
     navigator: "/",
   },
   {
-    label: "Market Place",
+    label: "What We Offer",
     navigator: "/",
   },
   {
-    label: "Market Place",
-    navigator: "/",
-  },
-  {
-    label: "Market Place",
+    label: "Connect Wallet",
     navigator: "/",
   },
 ];
@@ -95,10 +95,12 @@ class PageLayout extends Component<Props, States> {
       <div className={classes.pageLayout}>
         <AppBar className={classes.header} position="static">
           <Toolbar className={classes.layout}>
+            <img src={AppLogo}></img>
             <SearchHeader onSearch={() => null} />
             {options.map(({ label, navigator }, index) => (
               <HeaderOptionComponent
                 label={label}
+                key={index}
                 navigator={navigator}
                 isActive={index === 0}
               />

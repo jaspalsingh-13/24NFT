@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,7 +8,7 @@ import {
 import { createTheme, ThemeProvider, withTheme } from "@material-ui/core";
 import { observer } from "mobx-react";
 
-import { Dashboard, IClasses, PageLayout } from "./modules";
+import { Dashboard, IClasses, PageLayout, ModalKeeper } from "./modules";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -20,7 +20,7 @@ type Props = {
 
 @observer
 class App extends React.Component<Props> {
-  isAuthenticated = false;
+  isAuthenticated = true;
 
   render() {
     return (
@@ -29,27 +29,30 @@ class App extends React.Component<Props> {
         <ThemeProvider theme={createTheme(Theme)}>
           <Router>
             <PageLayout isAuthenticated={true}>
-              <Switch>
-                <Route
-                  path="/"
-                  exact
-                  render={(props: any) => {
-                    return this.isAuthenticated ? (
-                      <Redirect to="/dashboard" />
-                    ) : (
-                      <Redirect to="/*" />
-                    );
-                  }}
-                ></Route>
-                <ProtectedRoute
-                  isAuthenticated={true}
-                  path="/dashboard"
-                  component={Dashboard}
-                />
-                <Route path="*">
-                  <div>404 not found</div>
-                </Route>
-              </Switch>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Switch>
+                  <Route
+                    path="/"
+                    exact
+                    render={(props: any) => {
+                      return this.isAuthenticated ? (
+                        <Redirect to="/dashboard" />
+                      ) : (
+                        <div>testing</div>
+                      );
+                    }}
+                  ></Route>
+                  <ProtectedRoute
+                    isAuthenticated={true}
+                    path="/dashboard"
+                    component={Dashboard}
+                  />
+                  <Route path="/">
+                    <div>404 not found</div>
+                  </Route>
+                </Switch>
+                <ModalKeeper />
+              </Suspense>
             </PageLayout>
           </Router>
         </ThemeProvider>

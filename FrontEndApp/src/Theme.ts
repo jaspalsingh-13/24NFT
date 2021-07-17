@@ -2,7 +2,7 @@ import { ThemeOptions } from "@material-ui/core";
 
 const Theme: ThemeOptions = {
   typography: {
-    fontFamily: '"Ubuntu", sans-serif',
+    fontFamily: '"Poppins", sans-serif',
     fontSize: 14,
   },
   palette: {
