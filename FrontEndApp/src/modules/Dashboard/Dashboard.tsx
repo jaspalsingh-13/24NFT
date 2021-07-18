@@ -5,7 +5,7 @@ import { IClasses } from "../shared/interfaces";
 import { RouteComponentProps } from "react-router";
 
 import { observer } from "mobx-react";
-import { ModalStore } from "../shared";
+import { ModalStore, SignatureChip } from "../shared";
 import ConfirmDialog from "../shared/components/ConfirmDialog/ConfirmDialog";
 
 interface Props extends RouteComponentProps {
@@ -39,6 +39,15 @@ class Dashboard extends Component<Props> {
           <Button onClick={() => this.openDialog()} color="primary">
             click here
           </Button>
+          <SignatureChip
+            data={{
+              imgSrc: "",
+              latestBid: "",
+              signature: "",
+              timeLeft: "",
+              staked: "",
+            }}
+          />
         </div>
       </>
     );
