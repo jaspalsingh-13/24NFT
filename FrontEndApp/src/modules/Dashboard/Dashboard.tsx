@@ -6,6 +6,7 @@ import { RouteComponentProps } from "react-router";
 
 import { observer } from "mobx-react";
 import { ModalStore } from "../shared";
+import ConfirmDialog from "../shared/components/ConfirmDialog/ConfirmDialog";
 
 interface Props extends RouteComponentProps {
   classes: IClasses;
@@ -13,6 +14,21 @@ interface Props extends RouteComponentProps {
 
 @observer
 class Dashboard extends Component<Props> {
+  openDialog() {
+    ModalStore.open(
+      <ConfirmDialog
+        title="Confirm Delete"
+        message="Are you sure you want to remove this Account?"
+        yesButton="Delete"
+        onNoClick={() => ModalStore.close()}
+        onYesClick={() => {
+          console.log("yes clicked");
+          ModalStore.close();
+        }}
+      />
+    );
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -20,7 +36,7 @@ class Dashboard extends Component<Props> {
       <>
         <div className={classes.root}>
           <Typography variant="h4">Dashboard</Typography>
-          <Button onClick={() => ModalStore.open(<div>hello man</div>)}>
+          <Button onClick={() => this.openDialog()} color="primary">
             click here
           </Button>
         </div>

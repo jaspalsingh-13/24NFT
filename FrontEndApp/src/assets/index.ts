@@ -5,6 +5,7 @@ import SpotifyIcon from "./SpotifyIcon.svg";
 import TelegramIcon from "./TelegramIcon.svg";
 import TwitterLogo from "./TwitterLogo.svg";
 import SearchIcon from "./SearchIcon.svg";
+import CloseIcon from "./CloseIcon.svg";
 
 export {
   AppLogo,
@@ -14,4 +15,5 @@ export {
   TelegramIcon,
   TwitterLogo,
   SearchIcon,
+  CloseIcon,
 };
