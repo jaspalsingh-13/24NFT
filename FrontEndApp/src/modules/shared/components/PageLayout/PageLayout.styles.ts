@@ -7,23 +7,7 @@ export const styles = (theme: Theme) =>
       display: "flex",
       flexDirection: "column",
     },
-    layout: {
-      display: "flex",
-      flexDirection: "row",
-      overflow: "hidden",
-      justifyContent: "space-between",
-    },
-    header: {
-      height: 100,
-      display: "flex",
-      justifyContent: "center",
-    },
-    imageView: {
-      maxWidth: 100,
-    },
-    link: {
-      color: theme.palette.text.primary,
-    },
+
     contentWrapper: {
       display: "flex",
       width: "100%",
@@ -44,36 +28,5 @@ export const styles = (theme: Theme) =>
       left: 0,
       top: 0,
       width: "100%",
-    },
-    profileView: {
-      display: "flex",
-      justifyContent: "center",
-    },
-    titleContainer: {
-      display: "flex",
-
-      justifyContent: "center",
-      flex: 0,
-    },
-    title: {
-      fontFamily: '"Ubuntu", sans-serif',
-      fontSize: 16,
-    },
-    menuItem: {
-      fontFamily: '"Ubuntu", sans-serif',
-      fontSize: 14,
-      color: theme.palette.primary.main,
-    },
-    icons: {
-      height: 100,
-    },
-    footer: {
-      display: "flex",
-      flex: 0,
-      minheight: 100,
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-      alignItems: 'center',
-      justifyContent: 'space-between'
     },
   });
