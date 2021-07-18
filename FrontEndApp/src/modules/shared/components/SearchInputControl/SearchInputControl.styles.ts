@@ -5,10 +5,13 @@ export const styles = ({ palette }: Theme) =>
     formControl: {
       minWidth: 120,
       borderRadius: 30,
-      overflow: 'hidden'
+      overflow: "hidden",
+      marginLeft: 20,
     },
     conteiner: {
       backgroundColor: palette.background.default,
       color: palette.primary.main,
+      borderRadius: 30,
+      overflow: "hidden",
     },
   });

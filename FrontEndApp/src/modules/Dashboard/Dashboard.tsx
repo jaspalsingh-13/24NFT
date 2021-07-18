@@ -5,7 +5,7 @@ import { IClasses } from "../shared/interfaces";
 import { RouteComponentProps } from "react-router";
 
 import { observer } from "mobx-react";
-import { ModalStore } from "../shared";
+import { ImageChips, ModalStore } from "../shared";
 
 interface Props extends RouteComponentProps {
   classes: IClasses;
@@ -23,6 +23,15 @@ class Dashboard extends Component<Props> {
           <Button onClick={() => ModalStore.open(<div>hello man</div>)}>
             click here
           </Button>
+          <ImageChips
+            data={{
+              imgSrc: "",
+              latestBid: "test",
+              signature: "test",
+              staked: "test",
+              timeLeft: "test",
+            }}
+          />
         </div>
       </>
     );

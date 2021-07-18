@@ -14,8 +14,15 @@ import { IClasses } from "../../interfaces";
 import { UIStore } from "../../stores";
 import SearchHeader from "../SearchHeader/SearchHeader";
 import HeaderOptionComponent from "../HeaderOptionComponent/HeaderOptionComponent";
-import { Facebook } from "@material-ui/icons";
-import { AppLogo } from "../../../../assets";
+
+import {
+  AppLogo,
+  FacebookIcon,
+  InstagramIcon,
+  SpotifyIcon,
+  TelegramIcon,
+  TwitterLogo,
+} from "../../../../assets";
 
 interface Props {
   classes?: IClasses;
@@ -95,7 +102,7 @@ class PageLayout extends Component<Props, States> {
       <div className={classes.pageLayout}>
         <AppBar className={classes.header} position="static">
           <Toolbar className={classes.layout}>
-            <img src={AppLogo}></img>
+            <img src={AppLogo} alt="loading"></img>
             <SearchHeader onSearch={() => null} />
             {options.map(({ label, navigator }, index) => (
               <HeaderOptionComponent
@@ -122,19 +129,19 @@ class PageLayout extends Component<Props, States> {
             </Typography>
             <div>
               <IconButton onClick={() => null}>
-                <Facebook />
+                <img src={TwitterLogo} alt="loading" />
               </IconButton>
               <IconButton onClick={() => null}>
-                <Facebook />
+                <img src={FacebookIcon} alt="loading" />
               </IconButton>
               <IconButton onClick={() => null}>
-                <Facebook />
+                <img src={InstagramIcon} alt="loading" />
               </IconButton>
               <IconButton onClick={() => null}>
-                <Facebook />
+                <img src={TelegramIcon} alt="loading" />
               </IconButton>
               <IconButton onClick={() => null}>
-                <Facebook />
+                <img src={SpotifyIcon} alt="loading" />
               </IconButton>
             </div>
           </Toolbar>

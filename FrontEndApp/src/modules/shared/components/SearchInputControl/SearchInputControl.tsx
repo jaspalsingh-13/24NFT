@@ -6,14 +6,12 @@ import {
   FormControl,
 } from "@material-ui/core";
 
-// icons
-import SearchIcon from "@material-ui/icons/Search";
-
 import { styles } from "./SearchInputControl.styles";
 
 import { action, observable } from "mobx";
 import { observer } from "mobx-react";
 import { IClasses } from "../../interfaces";
+import { SearchIcon } from "../../../../assets";
 
 type Props = {
   classes?: IClasses;
@@ -42,7 +40,7 @@ class SearchInputControl extends React.Component<Props> {
           onChange={(e) => this.onInputChange(e.target.value)}
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon color="primary" />
+              <img src={SearchIcon} />
             </InputAdornment>
           }
           labelWidth={60}

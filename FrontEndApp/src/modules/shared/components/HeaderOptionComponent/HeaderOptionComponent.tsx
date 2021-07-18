@@ -28,7 +28,7 @@ class HeaderOptionComponent extends React.Component<Props> {
     });
     return (
       <Button className={buttonClass} variant="contained" color="primary">
-        <Link className={classes.link} to={`/${navigator}`}>
+        <Link className={classes.link} to={navigator}>
           <Typography color="inherit" variant="h6">
             {label}
           </Typography>

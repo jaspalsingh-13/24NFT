@@ -6,8 +6,8 @@ export const styles = ({ palette }: Theme) =>
       color: "#ffffff",
       textDecoration: "none",
       cursor: "pointer",
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis',
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
     },
     linkButton: {
       minWidth: "200px",
