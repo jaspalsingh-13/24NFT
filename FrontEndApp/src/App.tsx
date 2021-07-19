@@ -13,6 +13,7 @@ import { Dashboard, IClasses, PageLayout, ModalKeeper } from "./modules";
 import ProtectedRoute from "./ProtectedRoute";
 
 import Theme from "./Theme";
+import { NFTDetailsView } from "./modules/NFTDetailsView";
 
 type Props = {
   classes?: IClasses;
@@ -46,6 +47,11 @@ class App extends React.Component<Props> {
                     isAuthenticated={true}
                     path="/dashboard"
                     component={Dashboard}
+                  />
+                  <ProtectedRoute
+                    isAuthenticated={true}
+                    path="/nft-details"
+                    component={NFTDetailsView}
                   />
                   <Route path="/">
                     <div>404 not found</div>

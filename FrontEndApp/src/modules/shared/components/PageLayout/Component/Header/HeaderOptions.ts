@@ -5,7 +5,7 @@ export const HeaderOptions = [
   },
   {
     label: "How It Works",
-    navigator: "/",
+    navigator: "/nft-details",
   },
   {
     label: "What We Offer",

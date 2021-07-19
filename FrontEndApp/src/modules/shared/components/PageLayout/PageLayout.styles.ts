@@ -19,7 +19,7 @@ export const styles = (theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       flexGrow: 1,
-      height: "100%",
+      minHeight: "100%",
       overflowY: "auto",
       padding: "10px 25px 10px 25px",
     },
